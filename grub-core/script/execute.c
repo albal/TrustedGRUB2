@@ -952,8 +952,11 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
   /* it makes precomputation of the pcr value difficult and is unnecessary because each command within /*
   /* the menuentry is anyway measured */
   /* Added by albal: also ignore set commands so most importantly default option can be changed */
-  if( grub_strncmp( argv.args[0], "menuentry", grub_strlen( "menuentry" ) ) != 0
-  	|| grub_strncmp( argv.args[0], "set", grub_strlen( "set" ) ) != 0 ) {
+  if( 
+  	grub_strncmp( argv.args[0], "menuentry", grub_strlen( "menuentry" ) ) 
+  		&& 
+  	grub_strncmp( argv.args[0], "set", grub_strlen( "set" ) ) 
+  	) {
 
 	  /* Build string for measurement containing command + args */
 	  char command[1024];
