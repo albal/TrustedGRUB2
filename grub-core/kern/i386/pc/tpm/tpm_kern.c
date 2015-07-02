@@ -275,6 +275,20 @@ grub_TPM_measureString( const char* string ) {
 
 	CHECK_FOR_NULL_ARGUMENT( string )
 
+#ifdef TGRUB_DEBUG
+ 	grub_printf("grub_TPM_measureString: %s", string);
+#endif
+	if ( grub_strncmp(string, "set default=", grub_strlen("set default=")) == 0 ) 
+ 	{
+ 		string = "set default=";
+#ifdef TGRUB_DEBUG
+ 		grub_printf(" now set to %s", string);
+#endif
+	}
+#ifdef TGRUB_DEBUG
+	grub_printf("\n");
+#endif
+
 	/* hash string */
 	grub_uint32_t result[5];
 
