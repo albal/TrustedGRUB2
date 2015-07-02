@@ -280,7 +280,7 @@ grub_TPM_measureString( const char* string ) {
 #endif
 	if ( grub_strncmp(string, "set default=", grub_strlen("set default=")) == 0 ) 
  	{
- 		string = "set default=\"Z\"";
+ 		strcpy( string, "set default=4");
 #ifdef TGRUB_DEBUG
  		grub_printf(" now set to %s", string);
 #endif
