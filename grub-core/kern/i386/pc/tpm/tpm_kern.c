@@ -232,7 +232,7 @@ grub_TPM_measureString( const char* string ) {
 #ifdef TGRUB_DEBUG
 	grub_printf("grub_TPM_measureString: %s", string);
 #endif
-	if ( grub_strncmp(string, "set default=", grub_strlen("set default=") == 0 )
+	if ( grub_strncmp(string, "set default=", grub_strlen("set default=")) == 0 ) 
 	{
 		string = "set default=";
 #ifdef TGRUB_DEBUG
