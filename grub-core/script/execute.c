@@ -956,10 +956,10 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
   if( 
   	( grub_strncmp( argv.args[0], "set", grub_strlen( "set" ) ) != 0 )
   	&&
-  //	( grub_strncmp( argv.args[0], "linux", grub_strlen( "linux" ) ) != 0 )
-  //	&&
- //	( grub_strncmp( argv.args[0], "crypto", grub_strlen( "crypto" ) ) != 0 )
-  //	&&
+  	( ( grub_strncmp( argv.args[0], "linux", 5 ) && grub_strncmp( argv.args[1], "(crypto0)", 9) ) != 0 )
+  	&&
+ 	( ( grub_strncmp( argv.args[0], "crypto", 6) && grub_strncmp( argv.args[1], "hd0", 3) )  != 0 )
+  	&&
   	( grub_strncmp( argv.args[0], "menuentry", grub_strlen( "menuentry" ) ) != 0 )
   	) {
   		
