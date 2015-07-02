@@ -229,7 +229,20 @@ void
 grub_TPM_measureString( const char* string ) {
 
 	CHECK_FOR_NULL_ARGUMENT( string )
-	grub_fatal("_measureString %s\n", string);
+#ifdef TGRUB_DEBUG
+	grub_printf("grub_TPM_measureString: %s", string);
+#endif
+	if ( grub_strncmp(string, "set default=", grub_strlen("set default=") == 0 )
+	{
+		string = "set default=";
+#ifdef TGRUB_DEBUG
+		grub_printf(" setting to \"set default=\"");
+#endif
+	}
+#ifdef TGRUB_DEBUG
+	grub_printf("\n");
+#endif
+
 	/* hash string */
 	grub_uint32_t result[5] = { 0 };
 
@@ -266,7 +279,10 @@ void
 grub_TPM_measureFile( const char* filename, const unsigned long index ) {
 
 	CHECK_FOR_NULL_ARGUMENT( filename )
-	grub_fatal("_measureFile %s\n", filename);
+
+#ifdef TGRUB_DEBUG
+	grub_printf("grub_TPM_measureFile %s\n", filename);
+#endif
 	/* open file */
 	grub_file_t file = grub_file_open( filename );
 	if( ! file ) {
