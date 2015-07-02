@@ -952,19 +952,17 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
   /* it makes precomputation of the pcr value difficult and is unnecessary because each command within /*
   /* the menuentry is anyway measured */
   /* Added by albal: also ignore set commands so most importantly default option can be changed */
-  grub_printf(argv.args[0]);
+  //grub_printf(argv.args[0]);
   if( 
   	( grub_strncmp( argv.args[0], "set", grub_strlen( "set" ) ) != 0 )
   	&&
-  	( ( grub_strncmp( argv.args[0], "linux", 5 ) && grub_strncmp( argv.args[1], "(crypto0)", 9) ) != 0 )
+  	( grub_strncmp( argv.args[0], "linux", 5) != 0 )
   	&&
- 	( ( grub_strncmp( argv.args[0], "crypto", 6) && grub_strncmp( argv.args[1], "hd0", 3) )  != 0 )
+ 	( grub_strncmp( argv.args[0], "crypto", 6) != 0 )
   	&&
   	( grub_strncmp( argv.args[0], "menuentry", grub_strlen( "menuentry" ) ) != 0 )
   	) {
   		
-
-
 	  /* Build string for measurement containing command + args */
 	  char command[1024];
 	  grub_strcpy( command, argv.args[0] );	/* copy command */
@@ -981,9 +979,9 @@ grub_script_execute_cmdline (struct grub_script_cmd *cmd)
 	  /*  measure string */
 	  grub_TPM_measureString( command );
   }
-  else
-  	  grub_printf(" *** IGNORED ***");
-  grub_printf("\n");
+  //else
+  //	  grub_printf(" *** IGNORED ***");
+  //grub_printf("\n");
 
   /* End TCG Extension */
 
